@@ -21,6 +21,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/users/", require("./routes/userRoutes"));
 app.use("/api/blogs", require("./routes/blogRoutes"));
 
+// Example GET and POST routes
+app.get("/api/hello", (req, res) => {
+  res.status(200).json({ message: "Hello, world!" });
+});
+
 app.use(errorHandler);
 
 app.listen(process.env.PORT, () => {
