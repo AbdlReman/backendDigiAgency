@@ -2,9 +2,7 @@ const Blog = require("../models/blogModel");
 const AsyncHandler = require("express-async-handler");
 const slugify = require("slugify");
 
-// @desc Create a new blog
-// @route POST /api/blogs
-// @access Private (Admin)
+// Create a new blog
 const createBlog = AsyncHandler(async (req, res) => {
   const { title, image, content } = req.body;
 
@@ -33,9 +31,8 @@ const createBlog = AsyncHandler(async (req, res) => {
   res.status(201).json({ message: "Blog created successfully", blog });
 });
 
-// @desc Update an existing blog
-// @route PUT /api/blogs/:slug
-// @access Private (Admin)
+//  Update an existing blog
+
 const updateBlog = AsyncHandler(async (req, res) => {
   const { title, image, content } = req.body;
 
@@ -59,9 +56,7 @@ const updateBlog = AsyncHandler(async (req, res) => {
   res.json({ message: "Blog updated successfully", blog: updatedBlog });
 });
 
-// @desc Delete a blog
-// @route DELETE /api/blogs/:slug
-// @access Private (Admin)
+//  Delete a blog
 const deleteBlog = AsyncHandler(async (req, res) => {
   const blog = await Blog.findOne({ slug: req.params.slug });
   if (!blog) {
@@ -73,17 +68,13 @@ const deleteBlog = AsyncHandler(async (req, res) => {
   res.json({ message: "Blog deleted successfully" });
 });
 
-// @desc Get all blogs
-// @route GET /api/blogs
-// @access Public
+//  Get all blogs
 const getBlogs = AsyncHandler(async (req, res) => {
   const blogs = await Blog.find().sort({ date: -1 });
   res.json(blogs);
 });
 
-// @desc Get a single blog by slug
-// @route GET /api/blogs/:slug
-// @access Public
+//  Get a single blog by slug
 const getBlogBySlug = AsyncHandler(async (req, res) => {
   const blog = await Blog.findOne({ slug: req.params.slug });
 

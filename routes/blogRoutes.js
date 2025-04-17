@@ -15,7 +15,7 @@ router.get("/", getBlogs);
 router.get("/:slug", getBlogBySlug);
 
 // Admin-protected routes
-router.post("/", protect, admin, createBlog);
+router.post("/create", protect, admin, createBlog);
 router.put("/:slug", protect, admin, updateBlog);
 router.delete("/:slug", protect, admin, deleteBlog);
 
